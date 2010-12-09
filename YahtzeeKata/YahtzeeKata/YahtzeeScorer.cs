@@ -6,7 +6,7 @@ namespace YahtzeeKata
     {
         public static int ScoreOnes(string dices)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }

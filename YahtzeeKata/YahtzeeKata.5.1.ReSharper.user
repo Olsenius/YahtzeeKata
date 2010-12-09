@@ -8,12 +8,13 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="3AB112DD-FDE4-41FE-8E0B-058DD3D4AA04/f:YahtzeeScorer.cs" caret="192" fromTop="8" />
-      <File id="16BB83FE-2A4B-45D0-8936-87B66FBE6EF7/f:YahtzeeScorerTests.cs" caret="278" fromTop="11" />
+      <File id="3AB112DD-FDE4-41FE-8E0B-058DD3D4AA04/f:YahtzeeScorer.cs" caret="165" fromTop="8" />
+      <File id="16BB83FE-2A4B-45D0-8936-87B66FBE6EF7/f:YahtzeeScorerTests.cs" caret="201" fromTop="8" />
     </RecentFiles>
     <RecentEdits>
-      <File id="3AB112DD-FDE4-41FE-8E0B-058DD3D4AA04/f:YahtzeeScorer.cs" caret="130" fromTop="6" />
-      <File id="16BB83FE-2A4B-45D0-8936-87B66FBE6EF7/f:YahtzeeScorerTests.cs" caret="313" fromTop="12" />
+      <File id="3AB112DD-FDE4-41FE-8E0B-058DD3D4AA04/f:YahtzeeScorer.cs" caret="165" fromTop="8" />
+      <File id="16BB83FE-2A4B-45D0-8936-87B66FBE6EF7/f:YahtzeeScorerTests.cs" caret="531" fromTop="19" />
+      <File id="16BB83FE-2A4B-45D0-8936-87B66FBE6EF7/f:YahtzeeScorerTests.cs" caret="514" fromTop="18" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -23,8 +24,7 @@
     <Providers />
   </UnitTestRunner>
   <UnitTestRunnerNUnit>
-    <NUnitInstallDir IsNull="False">
-    </NUnitInstallDir>
+    <NUnitInstallDir>C:\Program Files\NUnit 2.5.5\bin\net-2.0\</NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
   <CompletionStatisticsManager>
