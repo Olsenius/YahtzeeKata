@@ -19,5 +19,11 @@ namespace YahtzeeKata.Tests
             score.ShouldEqual(1);
         }
   
+        [Test]
+        public void Score_ones_should_only_count_ones()
+        {
+            var score = YahtzeeScorer.ScoreOnes("2");
+            score.ShouldEqual(0);
+        }
     }
 }

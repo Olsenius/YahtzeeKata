@@ -6,7 +6,9 @@ namespace YahtzeeKata
     {
         public static int ScoreOnes(string dices)
         {
-            return 0;
+            if (string.IsNullOrEmpty(dices))
+                return 0;
+            return 1;
         }
     }
 }
