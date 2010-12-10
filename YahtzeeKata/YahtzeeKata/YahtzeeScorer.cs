@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace YahtzeeKata
 {
@@ -8,7 +9,10 @@ namespace YahtzeeKata
         {
             if (string.IsNullOrEmpty(dices))
                 return 0;
-            return 1;
+            else {
+                var ones = from d in dices where d.Equals('1') select d;
+                return ones.Count();
+                }
         }
     }
 }

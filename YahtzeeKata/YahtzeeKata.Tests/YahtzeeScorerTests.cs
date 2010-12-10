@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace YahtzeeKata.Tests
 {
@@ -9,6 +10,12 @@ namespace YahtzeeKata.Tests
         public void Score_ones_should_score_zero_when_no_dices()
         {
             var score = YahtzeeScorer.ScoreOnes(string.Empty);
+            score.ShouldEqual(0);
+        }
+        [Test]
+        public void Score_ones_should_score_zero_when_null_dices()
+        {
+            var score = YahtzeeScorer.ScoreOnes(null);
             score.ShouldEqual(0);
         }
   
@@ -25,5 +32,31 @@ namespace YahtzeeKata.Tests
             var score = YahtzeeScorer.ScoreOnes("2");
             score.ShouldEqual(0);
         }
+
+        [Test]
+        public void Score_ones_should_count_all_ones()
+        {
+            var score = YahtzeeScorer.ScoreOnes("121");
+            score.ShouldEqual(2);
+        }
+
+
+        //Usikker på om det bør være en test... men vær så god :)
+        [Test]
+        public void Score_ones_should_count_max_five_dices()
+        {
+            Assert.Throws<ArgumentException>(()=>YahtzeeScorer.ScoreOnes("123456"));
+        }
+
+
+
+        [Test]
+        public void Score_twos_should_score_two_when_one_correct_dice()
+        {
+            var score = YahtzeeScorer.ScoreTwos("2");
+            score.ShouldEqual(2);
+        }
+
+
     }
 }
