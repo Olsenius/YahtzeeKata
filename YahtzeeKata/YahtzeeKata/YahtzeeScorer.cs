@@ -7,12 +7,12 @@ namespace YahtzeeKata
     {
         public static int ScoreOnes(string dices)
         {
-            if (string.IsNullOrEmpty(dices))
-                return 0;
-            else {
-                var ones = from d in dices where d.Equals('1') select d;
-                return ones.Count();
-                }
+            return (dices ?? string.Empty).Where(d => d.Equals('1')).Count();
+        }
+
+        public static int ScoreTwos(string dices)
+        {
+            return (dices ?? string.Empty).Where(d => d.Equals('2')).Count() * 2;
         }
     }
 }

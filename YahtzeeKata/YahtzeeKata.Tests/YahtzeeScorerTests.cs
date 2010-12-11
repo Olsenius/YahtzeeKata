@@ -41,14 +41,6 @@ namespace YahtzeeKata.Tests
         }
 
 
-        //Usikker på om det bør være en test... men vær så god :)
-        [Test]
-        public void Score_ones_should_count_max_five_dices()
-        {
-            Assert.Throws<ArgumentException>(()=>YahtzeeScorer.ScoreOnes("123456"));
-        }
-
-
 
         [Test]
         public void Score_twos_should_score_two_when_one_correct_dice()
