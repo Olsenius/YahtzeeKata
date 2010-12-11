@@ -6,49 +6,60 @@ namespace YahtzeeKata.Tests
     [TestFixture]
     public class YahtzeeScorerTests
     {
-        [Test]
-        public void Score_ones_should_score_zero_when_no_dices()
+
+        [TestCase(null, 0)]
+        [TestCase("", 0)]
+        [TestCase("1", 1)]
+        [TestCase("112", 2)]
+        public void Score_ones_should_score_ones_correct(string dices, int expectedSum)
         {
-            var score = YahtzeeScorer.ScoreOnes(string.Empty);
-            score.ShouldEqual(0);
+            YahtzeeScorer.ScoreOnes(dices).ShouldEqual(expectedSum);
         }
-        [Test]
-        public void Score_ones_should_score_zero_when_null_dices()
+        
+        [TestCase("", 0)]
+        [TestCase("2", 2)]
+        [TestCase("212", 4)]
+        public void Score_twos_should_score_twos_correct(string dices, int expectedSum)
         {
-            var score = YahtzeeScorer.ScoreOnes(null);
-            score.ShouldEqual(0);
+            YahtzeeScorer.ScoreTwos(dices).ShouldEqual(expectedSum);
         }
-  
-        [Test]
-        public void Score_ones_should_score_one_when_one_correct_dice()
+
+        [TestCase("", 0)]
+        [TestCase("3", 3)]
+        [TestCase("313", 6)]
+        public void Score_threes_should_score_threes_correct(string dices, int expectedSum)
         {
-            var score = YahtzeeScorer.ScoreOnes("1");
-            score.ShouldEqual(1);
+            YahtzeeScorer.ScoreThrees(dices).ShouldEqual(expectedSum);
         }
-  
-        [Test]
-        public void Score_ones_should_only_count_ones()
+
+        [TestCase("", 0)]
+        [TestCase("4", 4)]
+        [TestCase("414", 8)]
+        public void Score_fours_should_score_fours_correct(string dices, int expectedSum)
         {
-            var score = YahtzeeScorer.ScoreOnes("2");
-            score.ShouldEqual(0);
+            YahtzeeScorer.ScoreFours(dices).ShouldEqual(expectedSum);
+        }
+
+        [TestCase("", 0)]
+        [TestCase("5", 5)]
+        [TestCase("515", 10)]
+        public void Score_fives_should_score_fives_correct(string dices, int expectedSum)
+        {
+            YahtzeeScorer.ScoreFives(dices).ShouldEqual(expectedSum);
+        }
+
+        [TestCase("", 0)]
+        [TestCase("6", 6)]
+        [TestCase("616", 12)]
+        public void Score_sixes_should_score_sixes_correct(string dices, int expectedSum)
+        {
+            YahtzeeScorer.ScoreSixes(dices).ShouldEqual(expectedSum);
         }
 
         [Test]
-        public void Score_ones_should_count_all_ones()
+        public void Score_pair_should_score_zero_when_no_dices()
         {
-            var score = YahtzeeScorer.ScoreOnes("121");
-            score.ShouldEqual(2);
+            YahtzeeScorer.ScorePair("1").ShouldEqual(0);
         }
-
-
-
-        [Test]
-        public void Score_twos_should_score_two_when_one_correct_dice()
-        {
-            var score = YahtzeeScorer.ScoreTwos("2");
-            score.ShouldEqual(2);
-        }
-
-
     }
 }
