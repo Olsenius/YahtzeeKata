@@ -74,5 +74,23 @@ namespace YahtzeeKata.Tests
             YahtzeeScorer.ScorePair("11133").ShouldEqual(6);
         }
 
+        [Test]
+        public void Score_two_pairs_should_score_zero_when_no_dices()
+        {
+            YahtzeeScorer.ScoreTwoPairs("").ShouldEqual(0);
+        }
+
+        [Test]
+        public void Score_two_pairs_should_score_zero_when_one_pair()
+        {
+            YahtzeeScorer.ScoreTwoPairs("11").ShouldEqual(0);
+        }
+
+        [Test]
+        public void Score_two_pairs_should_score_two_pairs_correct()
+        {
+            YahtzeeScorer.ScoreTwoPairs("1122").ShouldEqual(6);
+            YahtzeeScorer.ScoreTwoPairs("112233").ShouldEqual(10);
+        }
     }
 }
