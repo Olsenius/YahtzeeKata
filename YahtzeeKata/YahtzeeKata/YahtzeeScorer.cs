@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace YahtzeeKata
@@ -37,17 +38,27 @@ namespace YahtzeeKata
 
         private static int SumDicesWithValue(string dices, int value)
         {
-            var numberOfDicesWithMatchingValue = (dices ?? string.Empty).Where(d => Int32.Parse(d.ToString()) == value).Count();
+            var numberOfDicesWithMatchingValue = ParseToInt(dices).Count(x => x == value);
             return numberOfDicesWithMatchingValue * value;
         }
 
         public static int ScorePair(string dices)
         {
-            var numbers = dices.Select(x => Int32.Parse(x.ToString()));
-            var groupedNumbers = numbers.GroupBy(x => x);
-            if (groupedNumbers.Any(x => x.Count() == 2))
-                return groupedNumbers.FirstOrDefault(x => x.Count() == 2).FirstOrDefault() * 2;
+            var numbersGroupedByValue = ParseToInt(dices).GroupBy(x => x);
+
+            if (numbersGroupedByValue.Any(IsPair))
+                return numbersGroupedByValue.First(IsPair).First() * 2;
             return 0;
+        }
+
+        private static IEnumerable<int> ParseToInt(string dices)
+        {
+            return (dices ?? string.Empty).Select(x => Int32.Parse(x.ToString()));
+        }
+
+        private static bool IsPair(IGrouping<int,int> dices)
+        {
+            return dices.Count() == 2;
         }
     }
 }
