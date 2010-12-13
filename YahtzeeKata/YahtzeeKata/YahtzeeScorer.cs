@@ -23,19 +23,16 @@ namespace YahtzeeKata
         public static int ScoreFours(string dices)
         {
             return SumDicesWithValue(dices, 4);
-
         }
 
         public static int ScoreFives(string dices)
         {
             return SumDicesWithValue(dices, 5);
-
         }
 
         public static int ScoreSixes(string dices)
         {
             return SumDicesWithValue(dices, 6);
-
         }
 
         private static int SumDicesWithValue(string dices, int value)
@@ -44,36 +41,13 @@ namespace YahtzeeKata
             return numberOfDicesWithMatchingValue * value;
         }
 
-        public static int Score(string dices, ScoreType scoreType)
+        public static int ScorePair(string dices)
         {
-            if (scoreType >= ScoreType.Ones && scoreType <= ScoreType.Sixes)
-            {
-                return SumDicesWithValue(dices, (int)scoreType);
-            }
-            else
-            {
-                return 0;
-            }
+            var numbers = dices.Select(x => Int32.Parse(x.ToString()));
+            var groupedNumbers = numbers.GroupBy(x => x);
+            if (groupedNumbers.Any(x => x.Count() == 2))
+                return groupedNumbers.FirstOrDefault(x => x.Count() == 2).FirstOrDefault() * 2;
+            return 0;
         }
-    }
-
-    public enum ScoreType
-    {
-        Unknown=0,
-        Ones=1,
-        Twos=2,
-        Threes=3,
-        Fours=4,
-        Fives=5,
-        Sixes=6,
-        Pair=7,
-        TwoPairs=8,
-        ThreeOfAKind=9,
-        FourOfAKind=10,
-        SmallStraight=11,
-        LargeStraight=12,
-        FullHouse=13,
-        Yahtzee=14,
-        Chance=15
     }
 }
