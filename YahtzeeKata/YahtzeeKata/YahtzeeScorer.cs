@@ -44,7 +44,7 @@ namespace YahtzeeKata
 
         public static int ScorePair(string dices)
         {
-            // var numbersGroupedByValue = ParseToInt(dices).GroupBy(x => x).OrderByDescending(t=>t);
+
             var par = ParseToInt(dices).GroupBy(x => x)
                 .Where(t => t.Count() >= 2)
                 .OrderByDescending(u => u.Key)
@@ -61,10 +61,6 @@ namespace YahtzeeKata
             return (dices ?? String.Empty).Select(x => Int32.Parse(x.ToString()));
         }
 
-        private static bool IsPair(IGrouping<int, int> dices)
-        {
-            return dices.Count() == 2;
-        }
 
         public static object ScoreTwoPairs(string p)
         {
