@@ -60,5 +60,10 @@ namespace YahtzeeKata
         {
             return dices.Count() == 2;
         }
+
+        public static object ScoreTwoPairs(string p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

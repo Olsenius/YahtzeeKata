@@ -68,10 +68,12 @@ namespace YahtzeeKata.Tests
             YahtzeeScorer.ScorePair("11").ShouldEqual(2);
         }
 
-        [Test]
-        public void Score_pair_should_score_highest_pair()
+        [TestCase("11133", 6)]
+        [TestCase("11333", 6)]
+        [TestCase("55533", 10)]
+        public void Score_pair_should_score_highest_pair(string dices, int expectedSum)
         {
-            YahtzeeScorer.ScorePair("11133").ShouldEqual(6);
+            YahtzeeScorer.ScorePair(dices).ShouldEqual(expectedSum);
         }
 
         [Test]
