@@ -89,11 +89,21 @@ namespace YahtzeeKata.Tests
             YahtzeeScorer.ScoreTwoPairs("11").ShouldEqual(0);
         }
 
-        [Test]
-        public void Score_two_pairs_should_score_two_pairs_correct()
+        [TestCase("1122", 6)]
+        [TestCase("112233", 10)]
+        [TestCase("515144", 18)]
+        public void Score_two_pairs_should_score_two_pairs_correct(string dices, int expected)
         {
-            YahtzeeScorer.ScoreTwoPairs("1122").ShouldEqual(6);
-            YahtzeeScorer.ScoreTwoPairs("112233").ShouldEqual(10);
+            YahtzeeScorer.ScoreTwoPairs(dices).ShouldEqual(expected);
+        }
+
+        [TestCase("")]
+        [TestCase("1")]
+        [TestCase("11")]
+        [TestCase("112")]
+        public void Score_three_of_a_kind_should_score_0_if_less_than_3_dices_of_a_kind(string dices)
+        {
+            YahtzeeScorer.ScoreThreeOfAKind(dices).ShouldEqual(0);
         }
     }
 }

@@ -68,7 +68,6 @@ namespace YahtzeeKata
                 return 0;
 
             return pairs.Take(numberOfPairs).Select(x => x.Key * 2).Sum();
-
         }
     }
 }
