@@ -44,16 +44,7 @@ namespace YahtzeeKata
 
         public static int ScorePair(string dices)
         {
-
-            var par = ParseToInt(dices).GroupBy(x => x)
-                .Where(t => t.Count() >= 2)
-                .OrderByDescending(u => u.Key)
-                .FirstOrDefault();
-            if (par != null)
-                return par.Key * 2;
-
-            return 0;
-
+            return ScorePairs(dices, 1);
         }
 
         private static IEnumerable<int> ParseToInt(string dices)
@@ -64,14 +55,19 @@ namespace YahtzeeKata
 
         public static object ScoreTwoPairs(string dices)
         {
+            return ScorePairs(dices, 2);
+        }
+
+        private static int ScorePairs(string dices, int numberOfPairs)
+        {
             var pairs = ParseToInt(dices).GroupBy(x => x)
                 .Where(t => t.Count() >= 2)
                 .OrderByDescending(u => u.Key);
 
-            if (pairs.Count() < 2)
+            if (pairs.Count() < numberOfPairs)
                 return 0;
 
-            return pairs.Take(2).Select(x => x.Key * 2).Sum();
+            return pairs.Take(numberOfPairs).Select(x => x.Key * 2).Sum();
 
         }
     }
