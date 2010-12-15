@@ -62,9 +62,17 @@ namespace YahtzeeKata
         }
 
 
-        public static object ScoreTwoPairs(string p)
+        public static object ScoreTwoPairs(string dices)
         {
-            throw new NotImplementedException();
+            var pairs = ParseToInt(dices).GroupBy(x => x)
+                .Where(t => t.Count() >= 2)
+                .OrderByDescending(u => u.Key);
+
+            if (pairs.Count() < 2)
+                return 0;
+
+            return pairs.Take(2).Select(x => x.Key * 2).Sum();
+
         }
     }
 }
