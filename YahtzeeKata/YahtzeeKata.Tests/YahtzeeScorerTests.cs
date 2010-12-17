@@ -92,6 +92,7 @@ namespace YahtzeeKata.Tests
         [TestCase("1122", 6)]
         [TestCase("112233", 10)]
         [TestCase("515144", 18)]
+        [TestCase("55555", 20)]
         public void Score_two_pairs_should_score_two_pairs_correct(string dices, int expected)
         {
             YahtzeeScorer.ScoreTwoPairs(dices).ShouldEqual(expected);
@@ -104,6 +105,32 @@ namespace YahtzeeKata.Tests
         public void Score_three_of_a_kind_should_score_0_if_less_than_3_dices_of_a_kind(string dices)
         {
             YahtzeeScorer.ScoreThreeOfAKind(dices).ShouldEqual(0);
+        }
+
+        [TestCase("111",3)]
+        [TestCase("12122",6)]
+        [TestCase("336636", 18)]
+        public void Score_three_of_a_kind_should_score_three_of_a_kind_correct(string dices, int excpected)
+        {
+            YahtzeeScorer.ScoreThreeOfAKind(dices).ShouldEqual(excpected);
+        }
+
+
+        [TestCase("")]
+        [TestCase("1")]
+        [TestCase("1121")]
+        public void Score_four_of_a_kind_should_score_0_if_less_than_4_dices_of_a_kind(string dices)
+        {
+            YahtzeeScorer.ScoreFourOfAKind(dices).ShouldEqual(0);
+        }
+
+        [TestCase("1111", 4)]
+        [TestCase("12222", 8)]
+        [TestCase("66616", 24)]
+        [TestCase("66666", 24)]
+        public void Score_four_of_a_kind_should_score_four_of_a_kind_correct(string dices, int excpected)
+        {
+            YahtzeeScorer.ScoreFourOfAKind(dices).ShouldEqual(excpected);
         }
     }
 }

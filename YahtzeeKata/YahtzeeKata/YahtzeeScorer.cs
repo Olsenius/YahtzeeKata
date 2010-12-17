@@ -44,7 +44,7 @@ namespace YahtzeeKata
 
         public static int ScorePair(string dices)
         {
-            return ScorePairs(dices, 1);
+            return ScoreMultiples(dices, 2, 1);
         }
 
         private static IEnumerable<int> ParseToInt(string dices)
@@ -55,19 +55,51 @@ namespace YahtzeeKata
 
         public static object ScoreTwoPairs(string dices)
         {
-            return ScorePairs(dices, 2);
+            return ScoreMultiples(dices, 2,2);
         }
 
-        private static int ScorePairs(string dices, int numberOfPairs)
+        private static int ScoreMultiples(string dices, int numberofSameDices, int repetitions)
         {
-            var pairs = ParseToInt(dices).GroupBy(x => x)
-                .Where(t => t.Count() >= 2)
-                .OrderByDescending(u => u.Key);
+            int sum = 0;
+            string dicesNow = dices;
+            for (int n = 1; n <= repetitions; n++)
+            {
+                string dicesLeft;
+                var result = GetSame(dicesNow, numberofSameDices, out dicesLeft);
+                if (string.IsNullOrEmpty(result)) return 0;
 
-            if (pairs.Count() < numberOfPairs)
-                return 0;
+                sum += ParseToInt(result).Sum();
+                dicesNow = dicesLeft;
 
-            return pairs.Take(numberOfPairs).Select(x => x.Key * 2).Sum();
+            }
+            return sum;
+        }
+
+        private static string GetSame(string dices, int numberOfSame, out string dicesleft)
+        {
+            dicesleft = dices;
+            var same = dices.GroupBy(x => x)
+                .Where(t => t.Count() >= numberOfSame)
+                .OrderByDescending(u => u.Key)
+                .FirstOrDefault();
+
+            if (same != null && same.Count() >= numberOfSame)
+            {
+                dicesleft = dices.Remove(dices.IndexOf(same.First()), numberOfSame);
+                return new string(same.Take(numberOfSame).ToArray());
+            }
+            return "";
+
+        }
+
+        public static int ScoreThreeOfAKind(string dices)
+        {
+            return ScoreMultiples(dices, 3, 1);
+        }
+
+        public static int ScoreFourOfAKind(string dices)
+        {
+            return ScoreMultiples(dices, 4, 1);
         }
     }
 }
