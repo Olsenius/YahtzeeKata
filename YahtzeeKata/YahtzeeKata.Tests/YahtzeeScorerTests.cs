@@ -115,7 +115,6 @@ namespace YahtzeeKata.Tests
             YahtzeeScorer.ScoreThreeOfAKind(dices).ShouldEqual(excpected);
         }
 
-
         [TestCase("")]
         [TestCase("1")]
         [TestCase("1121")]
@@ -131,6 +130,12 @@ namespace YahtzeeKata.Tests
         public void Score_four_of_a_kind_should_score_four_of_a_kind_correct(string dices, int excpected)
         {
             YahtzeeScorer.ScoreFourOfAKind(dices).ShouldEqual(excpected);
+        }
+
+        [Test]
+        public void Should_score_full_house()
+        {
+            YahtzeeScorer.ScoreFullHouse("11122").ShouldEqual(7);
         }
     }
 }

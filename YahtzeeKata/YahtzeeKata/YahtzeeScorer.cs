@@ -119,5 +119,10 @@ namespace YahtzeeKata
         {
             return dices.GroupBy(x => x).Any(x => x.Count() >= numberOfSameDices);
         }
+
+        public static int ScoreFullHouse(string dices)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
