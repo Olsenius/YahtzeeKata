@@ -55,10 +55,23 @@ namespace YahtzeeKata
 
         public static object ScoreTwoPairs(string dices)
         {
-            return ScoreMultiples(dices, 2,2);
+            return ScoreMultiples(dices, 2, 2);
         }
 
-        private static int ScoreMultiples(string dices, int numberofSameDices, int repetitions)
+        private static int ScoreMultiples(string dices, int numberOfSameDices, int repititions)
+        {
+            var same = dices.GroupBy(x => x)
+                .Where(t => t.Count() >= numberOfSameDices)
+                .OrderByDescending(u => u.Key)
+                .Take(repititions);
+
+            if (same.Count() != repititions)
+                return 0;
+
+            return same.Sum(x => Int32.Parse(x.Key.ToString()) * numberOfSameDices);
+        }
+
+        private static int ScoreMultiplesWithOut(string dices, int numberofSameDices, int repetitions)
         {
             int sum = 0;
             string dicesNow = dices;
