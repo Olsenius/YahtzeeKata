@@ -92,7 +92,7 @@ namespace YahtzeeKata.Tests
         [TestCase("1122", 6)]
         [TestCase("112233", 10)]
         [TestCase("545414", 18)]
-        [TestCase("55555", 20)]
+        [TestCase("5555", 0)]
         public void Score_two_pairs_should_score_two_pairs_correct(string dices, int expected)
         {
             YahtzeeScorer.ScoreTwoPairs(dices).ShouldEqual(expected);
